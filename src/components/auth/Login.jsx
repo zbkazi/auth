@@ -2,16 +2,26 @@
 import { useState } from 'react';
 import axios from 'axios';
 import LoginBySocial from './LoginBySocial';
-// import { useHistory } from 'react-router-dom';
+import SuccessToast from '../toasts/SuccessToast';
+import ErrorToast from '../toasts/ErrorToast';
+
+import { useRouter } from 'next/navigation';
+
+
 
 const Login = () => {
+
+  const router = useRouter();
+
  const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  // const history = useHistory(); // Get history object for redirection
+  const [showSuccessToast, setShowSuccessToast] = useState(false); // State variable for success toast
+  const [showErrorToast, setShowErrorToast] = useState(false); // State variable for error toast
+  const [toastMessage, setToastMessage] = useState(''); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,6 +29,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    
     // Validation
     const newErrors = {};
     if (!formData.email.trim()) {
@@ -36,14 +48,22 @@ const Login = () => {
         const ipAddress = window.location.hostname; // Get IP address
         const userAgent = navigator.userAgent; // Get user agent
         const headers = { 'user-agent': userAgent, 'x-forwarded-for': ipAddress }; // Include in request headers
-        const response = await axios.post('http://localhost:4000/auth/login', formData, { headers });
-        console.log(response.data); // Log response data
+         await axios.post('http://localhost:4000/auth/login', formData, { headers });
+        // Clear form fields
+        setFormData({
+          email: '',
+          password: '',
+        })
+        
+        // Log response data
+        setToastMessage('Login successful!'); // Set success message for toast
+        setShowSuccessToast(true); // Show success toast
 
-        // Redirect or set authentication state
+        router.push('/dashboard'); // Redirect to dashboard
       } catch (error) {
         console.error('Error:', error);
-        // Display error on the client side
-        setErrors({ general: 'An error occurred. Please try again.' });
+        setToastMessage('Login failed'); // Set error message for toast
+        setShowErrorToast(true); // Show error toast
       }
     }
   };
@@ -61,6 +81,11 @@ const Login = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+           {/* Show success toast */}
+      <SuccessToast show={showSuccessToast} message={toastMessage} />
+      {/* Show error toast */}
+      <ErrorToast show={showErrorToast} message={toastMessage} />
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">

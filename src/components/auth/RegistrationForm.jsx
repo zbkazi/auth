@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 import axios from 'axios';
+import SuccessToast from '../toasts/SuccessToast';
+import ErrorToast from '../toasts/ErrorToast';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,12 @@ const RegistrationForm = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+   const [showSuccessToast, setShowSuccessToast] = useState(false); 
+  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -48,12 +56,15 @@ const RegistrationForm = () => {
           confirmPassword: '',
         });
         // Redirect to login page after successful registration
+        setToastMessage('Registration successful! Redirecting to login page...');
+        setShowSuccessToast(true);
         setTimeout(() => {
           window.location.href = '/login';
         })
       } catch (error) {
         console.error('Error:', error);
-        // Handle registration error
+        setToastMessage('Failed to register'); // Set error message for toast
+        setShowErrorToast(true); // Show error toast
       }
     }
   };
@@ -69,6 +80,8 @@ const RegistrationForm = () => {
         {registrationSuccess && (
           <p className="text-green-500 text-center mb-4">Registration successful! Redirecting to login page...</p>
         )}
+         <SuccessToast show={showSuccessToast} message={toastMessage} /> {/* Show success toast */}
+        <ErrorToast show={showErrorToast} message={toastMessage} /> {/* Show error toast */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-gray-700">Name</label>

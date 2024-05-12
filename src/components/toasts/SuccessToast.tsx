@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 function SuccessToast({ message }: { message: string }) {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisible(false);
-    }, 30000); // Change the duration as per your requirement, here it's set to 30 seconds
+    if (typeof window !== 'undefined') {
+      setVisible(true); // Only run this effect on the client side
+      const timer = setTimeout(() => {
+        setVisible(false);
+      }, 30000); // Change the duration as per your requirement, here it's set to 30 seconds
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (

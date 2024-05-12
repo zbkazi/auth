@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-function ErrorToast({ message }: { message: string }) {
+interface ToastProps {
+  message: string;
+}
+
+function ErrorToast({ message }: ToastProps) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 30000); // Change the duration as per your requirement, here it's set to 30 seconds
+    }, 5000); // Duration: 5 seconds
 
     return () => clearTimeout(timer);
   }, []);
