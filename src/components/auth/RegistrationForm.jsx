@@ -3,8 +3,10 @@ import { useState } from 'react';
 import axios from 'axios';
 import SuccessToast from '../toasts/SuccessToast';
 import ErrorToast from '../toasts/ErrorToast';
+import { useRouter } from 'next/navigation';
 
 const RegistrationForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -59,8 +61,8 @@ const RegistrationForm = () => {
         setToastMessage('Registration successful! Redirecting to login page...');
         setShowSuccessToast(true);
         setTimeout(() => {
-          window.location.href = '/login';
-        })
+          router.push('/login');
+        }, 3000); // Redirect after 3 seconds
       } catch (error) {
         console.error('Error:', error);
         setToastMessage('Failed to register'); // Set error message for toast

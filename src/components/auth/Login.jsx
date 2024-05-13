@@ -58,8 +58,9 @@ const Login = () => {
         // Log response data
         setToastMessage('Login successful!'); // Set success message for toast
         setShowSuccessToast(true); // Show success toast
-
-        router.push('/dashboard'); // Redirect to dashboard
+        setTimeout(() => {
+          router.push('/dashboard'); 
+        }, 3000);
       } catch (error) {
         console.error('Error:', error);
         setToastMessage('Login failed'); // Set error message for toast
