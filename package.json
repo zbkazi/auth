@@ -1,0 +1,8 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zbkazi/auth",
+  "author": "Zobaidul Kazi <153954612+zbkazi@users.noreply.github.com>",
+  "license": "MIT"
+}
