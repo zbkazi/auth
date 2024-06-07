@@ -4,6 +4,13 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 
+const router = require('./routes/index')
+
+
+
+
+// call routes
+app.use('/', router)
 
 // error handling middleware
 
