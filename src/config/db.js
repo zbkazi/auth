@@ -13,4 +13,4 @@ db.once("open", () => {
   console.log("Connected to MongoDB success");
 });
 
-export default db;
+module.exports = db;
