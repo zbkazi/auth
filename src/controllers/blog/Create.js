@@ -16,7 +16,7 @@ const createBlog = async (req, res, next) => {
           }
 
            // check if Blog already exists
-    const existingBlog = await Blog.findOne({ email: parsedBody.data.title });
+    const existingBlog = await Blog.findOne({ title: parsedBody.data.title });
     if (existingBlog) {
       return res.status(400).json({
         success: false,
