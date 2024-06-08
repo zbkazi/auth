@@ -2,8 +2,6 @@ const Blog = require('../../models/Blog')
 const {blogSchema} = require('../../schemas/blogSchema')
 
 
-
-
 const createBlog = async (req, res, next) => {
     try {
         // validate request body
@@ -26,14 +24,16 @@ const createBlog = async (req, res, next) => {
       });
     }
 
+    // create new blog
+    const blog = new Blog(parsedBody.data);
+    await blog.save();    
 
-    // save db
 
 // Return success response with token
 return res.status(201).json({
     success: true,
     message: "User created successfully",
-    data: user,
+    data: blog,
   });
 
 
