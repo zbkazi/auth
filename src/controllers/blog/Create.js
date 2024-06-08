@@ -1,4 +1,4 @@
-const Blog = require('../../models/Blog')
+const Blog = require('../../models/blog/Blog')
 const {blogSchema} = require('../../schemas/blogSchema')
 
 

@@ -1,6 +1,6 @@
 
 
-const Blog = require("../../models/Blog");
+const Blog = require("../../models/blog/Blog");
 const getBlogs = async (req, res, next) => {
     try {
       const page = parseInt(req.query.page) || 1;
