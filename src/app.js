@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 const port = process.env.PORT || 4000
 
 app.get("/", (_req, res) => {
-  res.status(200).send({ 
+  res.status(200).json({ 
     success: true,
     message: "Welcome to Blog API v1.0.0",
     version: "v1.0.0",

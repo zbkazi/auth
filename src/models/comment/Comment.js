@@ -7,14 +7,12 @@ const commentSchema = new Schema({
     ref: 'Blog',
     required: true,
     index: true,
-    trim: true
   },
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
     index: true,
-    trim: true
   },
   comment: {
     type: String,
