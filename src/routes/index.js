@@ -1,22 +1,12 @@
 const express = require('express');
+const router = express.Router();
 
-const router = express.Router()
-// import controllers here
-const createBlog = require('../controllers/blog/Create')
-const getBlogs = require('../controllers/blog/getBlogs')
-const authUser = require('../controllers/auth/authUser')
+// Import routers
+const blogs = require('./blogs');
+const comments = require('./comments');
 
-// import middleware here
-
-
-
-router.post('/create', createBlog);
-router.get('/blogs', getBlogs);
-
-
-
-// auth middleware
-router.post('/auth/user', authUser)
-
+// Use routers
+router.use('/b', blogs);
+router.use('/c', comments);
 
 module.exports = router;

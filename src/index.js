@@ -1,17 +1,13 @@
 const app = require("./app");
 const dotenv = require("dotenv");
 require("./config/db");
+const router = require("./routes");
 
 dotenv.config();
 
 
-const router = require('./routes/index')
 
-
-
-
-// call routes
-app.use('/', router)
+app.use("/api", router)
 
 // error handling middleware
 
