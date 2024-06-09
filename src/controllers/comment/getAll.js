@@ -33,15 +33,13 @@ const comments = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Comments fetched successfully",
-      limit: limit,
-      skip: skip,
-      previousPage: previousPage,
-      nextPage: nextPage,
-      totalPages: totalPages,
-      page: page,
-      totalCount: totalCount,
-      currentPage: page,
-      totalPages: Math.ceil(totalCount / limit),
+      pagination: {
+        total: totalCount,
+        page: currentPage,
+        pages: totalPages,
+        previous: previousPage,
+        next: nextPage,
+      },
       data: comments,
     });
   } catch (error) {

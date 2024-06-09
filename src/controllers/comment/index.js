@@ -1,11 +1,11 @@
 const create = require("./create");
 const comments = require("./getAll");
-const deletes = require("./delete");
+const remove = require("./remove");
 const update = require("./update");
 
 module.exports = {
     create,
     comments,
-    deletes,
+    remove,
     update
 }

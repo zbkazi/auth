@@ -2,12 +2,12 @@ const express = require('express');
 const comment = express.Router();
 
 // Import controllers
-const { create, comments, deletes, update } = require('../controllers/comment');
+const { create, comments, remove, update } = require('../controllers/comment');
 
 // Define comment routes
 comment.post('/create', create);
 comment.get('/comments', comments);
-comment.delete('/delete', deletes);
-comment.put('/update', update);
+comment.delete('/remove/:id', remove);
+comment.put('/update/:id', update);
 
 module.exports = comment;
