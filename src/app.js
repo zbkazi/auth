@@ -14,7 +14,15 @@ app.use(morgan("dev"));
 const port = process.env.PORT || 4000
 
 app.get("/", (_req, res) => {
-  res.send("<h1>Hello Kazi Byte!, Welcome to Kazi Byte API</h1>");
+  res.status(200).send({ 
+    success: true,
+    message: "Welcome to Blog API v1.0.0",
+    version: "v1.0.0",
+    author: "zbkazi",
+    github: "https://github.com/zbkazi",
+    docs: "https://github.com/zbkazi/auth",
+    thanks: "Thank you for using this API",
+  });
 });
 
 app.listen(port, () => {

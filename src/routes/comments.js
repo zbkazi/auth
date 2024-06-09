@@ -1,10 +1,13 @@
 const express = require('express');
-const comments = express.Router();
+const comment = express.Router();
 
 // Import controllers
-const { create } = require('../controllers/comment');
+const { create, comments, deletes, update } = require('../controllers/comment');
 
 // Define comment routes
-comments.post('/create', create);
+comment.post('/create', create);
+comment.get('/comments', comments);
+comment.delete('/delete', deletes);
+comment.put('/update', update);
 
-module.exports = comments;
+module.exports = comment;
