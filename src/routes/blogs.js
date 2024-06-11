@@ -1,10 +1,10 @@
 const express = require('express');
 const blogs = express.Router();
 
-//  const { createBlog, getBlogs } = require('../../controllers/blog');
+ const { create, getBlogs } = require('../controllers/blog');
 
-// Define blog routes
-// Example: blogs.post('/v1/create', createBlog);
-// Example: blogs.get('/v1', getBlogs);
+
+blogs.post('/create', create);
+blogs.get('/blogs', getBlogs);
 
 module.exports = blogs;

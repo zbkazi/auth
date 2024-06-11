@@ -1,5 +1,5 @@
 const Blog = require('../../models/blog/Blog')
-const {blogSchema} = require('../../schemas/blogSchema')
+const {blogSchema} = require('../../schemas/blog/blogSchema')
 
 
 const createBlog = async (req, res, next) => {

@@ -3,7 +3,7 @@ const {Schema, model} = require('mongoose')
 const blogSchema = new Schema(
     {
       authorId: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: "User",
         required: true,
         index: true,
@@ -73,8 +73,6 @@ const blogSchema = new Schema(
         type: Date,
         default: Date.now,
         index: true,
-        min: 2,
-        max: 100,
       },
     },
     {
