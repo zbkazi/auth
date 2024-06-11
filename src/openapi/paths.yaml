@@ -107,51 +107,6 @@
                   # $ref: '#/components/schemas/Blog'
   
 ## Block End
-
-
-## Start category
-/category:
-  get:
-    tags:
-    - Category
-    summary: Get all Category
-    description: Get all Category
-    responses:
-      '200':
-        description: A successful response
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    # $ref: '#/components/schemas/Category'
-  post:
-    tags:
-    - Category
-    summary: Create a new category
-    description: Create a new category
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            # $ref: '#/components/schemas/Category'
-    responses:
-      '200':
-        description: A successful response
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                data:
-                  # $ref: '#/components/schemas/Category'
-
-## End category
-
 ## Start comment
 /comment:
   get:
@@ -236,3 +191,436 @@
                 data:
                   # $ref: '#/components/schemas/Tag'
 ## End tag
+
+## Start category
+/category:
+  get:
+    tags:
+    - Category
+    summary: Get all Category
+    description: Get all Category
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Category'
+  post:
+    tags:
+    - Category
+    summary: Create a new category
+    description: Create a new category
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Category'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Category'
+
+## End category
+
+
+## Start draft
+/draft:
+  get:
+    tags:
+    - Draft
+    summary: Get all draft
+    description: Get all draft
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Draft'
+  post:
+    tags:
+    - Draft
+    summary: Create a new draft
+    description: Create a new draft
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Draft'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Draft'
+
+## End draft
+
+
+## Start Follower
+/follower:
+  get:
+    tags:
+    - Follower
+    summary: Get all follower
+    description: Get all follower
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Follower'
+  post:
+    tags:
+    - Follower
+    summary: Create a new follower
+    description: Create a new follower
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Follower'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Follower'
+
+## End Follower
+
+
+## Start Like
+/like:
+  get:
+    tags:
+    - Like
+    summary: Get all like
+    description: Get all like
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Like'
+  post:
+    tags:
+    - Like
+    summary: Create a new like
+    description: Create a new like
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Like'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Like'
+
+## End Like
+
+
+## Start Setting
+/setting:
+  get:
+    tags:
+    - Setting
+    summary: Get all setting
+    description: Get all setting
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Setting'
+  post:
+    tags:
+    - Setting
+    summary: Create a new setting
+    description: Create a new setting
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Setting'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Setting'
+
+
+## End Setting
+
+## Start Report
+/report:
+  get:
+    tags:
+    - Report
+    summary: Get all report
+    description: Get all report
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Report'
+  post:
+    tags:
+    - Report
+    summary: Create a new report
+    description: Create a new report
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Report'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Report'
+
+## End Report
+
+
+## Notification
+/notification:
+  get:
+    tags:
+    - Notification
+    summary: Get all notification
+    description: Get all notification
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Notification'
+  post:
+    tags:
+    - Notification
+    summary: Create a new notification
+    description: Create a new notification
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Notification'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Notification'
+
+
+## End Notification
+
+## Start Search
+/search:
+  get:
+    tags:
+    - Search
+    summary: Get all search
+    description: Get all search
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Search'
+  post: 
+    tags:
+    - Search
+    summary: Create a new search
+    description: Create a new search
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Search'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Search'
+
+
+## End Search
+
+
+## Profile Start
+/profile:
+  get:
+    tags:
+    - Profile
+    summary: Get all profile
+    description: Get all profile
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    # $ref: '#/components/schemas/Profile'
+  post:
+    tags:
+    - Profile
+    summary: Create a new profile
+    description: Create a new profile
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Profile'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Profile'
+  update:
+    tags:
+    - Profile
+    summary: Update profile
+    description: Update profile
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            # $ref: '#/components/schemas/Profile'
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  # $ref: '#/components/schemas/Profile'
+  delete:
+    tags:
+    - Profile
+    summary: Delete profile
+    description: Delete profile
+    responses:
+      '200':
+        description: A successful response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  example: "Profile deleted successfully"
+
+## Profile End

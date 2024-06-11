@@ -18,10 +18,10 @@ info:
 security:
   - bearerAuth: []
 servers:
-  - url: http://localhost:4000
+  - url: https://auth-nhju.onrender.com
     description: Development server
-  - url: http://localhost:4001
-    description: Staging server
+  - url: http://localhost:4000
+    description: A local server
 
 
 ## Call APIs with these tags
