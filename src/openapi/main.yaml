@@ -18,10 +18,14 @@ info:
 security:
   - bearerAuth: []
 servers:
-  - url: http://localhost:8000
+  - url: http://localhost:4000
     description: Development server
-  - url: http://localhost:8001
+  - url: http://localhost:4001
     description: Staging server
+
+
+## Call APIs with these tags
+
 tags:
   $ref: './tags.yaml'
 paths:

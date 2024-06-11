@@ -1,7 +1,7 @@
-- name: Auth
-  description: Auth API
 - name: User
   description: User API
+- name: Auth
+  description: Auth API
 - name: Blog
   description: Blog API 
 - name: Comments
@@ -10,3 +10,20 @@
   description: Tags API
 - name: Categories
   description: Categories API
+- name: Drafts
+  description: Drafts API
+- name: Followers
+  description: Followers API
+- name: Likes
+  description: Likes API
+- name: Settings
+  description: Settings API
+- name: Reports
+  description: Reports API
+- name: Notifications
+  description: Notifications API
+- name: Search
+  description: Search API
+- name: Profile
+  description: Profile API
+  
