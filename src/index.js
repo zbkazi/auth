@@ -2,12 +2,16 @@ const app = require("./app");
 const dotenv = require("dotenv");
 require("./config/db");
 const router = require("./routes");
+const swaggerUI = require("swagger-ui-express");
+const swaggerDocs =require("./mergeYaml");
 
 dotenv.config();
 
 
 
+app.use("/api-docs", swaggerUI.serve,  swaggerUI.setup(swaggerDocs));
 app.use("/api", router)
+
 
 // error handling middleware
 

@@ -1,0 +1,9 @@
+paths:
+  User:
+    get:
+      summary: Get all users
+      description: Get all users
+      tags:
+        - User
+
+        
