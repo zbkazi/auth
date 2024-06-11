@@ -4,23 +4,23 @@
   description: Auth API
 - name: Blog
   description: Blog API 
-- name: Comments
+- name: Comment
   description: Comments API
-- name: Tags
+- name: Tag
   description: Tags API
-- name: Categories
-  description: Categories API
-- name: Drafts
-  description: Drafts API
-- name: Followers
-  description: Followers API
-- name: Likes
-  description: Likes API
-- name: Settings
-  description: Settings API
-- name: Reports
-  description: Reports API
-- name: Notifications
+- name: Category
+  description: Category API
+- name: Draft
+  description: Draft API
+- name: Follower
+  description: Follower API
+- name: Like
+  description: Like API
+- name: Setting
+  description: Setting API
+- name: Report
+  description: Report API
+- name: Notification
   description: Notifications API
 - name: Search
   description: Search API
