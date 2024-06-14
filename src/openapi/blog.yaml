@@ -1311,7 +1311,365 @@ paths:
           $ref: '#/components/responses/500'
 
 
+  ## Draft ##
 
+  '/drafts':
+    get:
+      tags:
+      - Draft
+      summary: Get all drafts
+      description: Get all drafts
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Draft found
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 61d3d0d2a7d7d7d7d7d7d7d7
+                        title:
+                          type: string
+                          example: lorem ipsum dolor sit amet
+                        content:
+                          type: string
+                          example: lorem ipsum dolor sit amet
+                        createdAt:
+                          type: string
+                          example: 2022-01-01T00:00:00.000Z
+                        updatedAt:
+                          type: string
+                          example: 2022-01-01T00:00:00.000Z
+                required:
+                - code
+                - message
+                - data
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/draft/create':
+    post:
+      tags:
+      - Draft
+      summary: Create draft
+      description: Create draft
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: 61d3d0d2a7d7d7d7d7d7d7d7
+                title:
+                  type: string
+                  example: lorem ipsum dolor sit amet
+                content:
+                  type: string
+                  example: lorem ipsum dolor sit amet
+              required:
+              - title
+              - content
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Draft created
+                required:
+                - code
+                - message
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/draft/update/{id}':
+    put:
+      tags:
+      - Draft
+      summary: Update draft
+      description: Update draft
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: lorem ipsum dolor sit amet
+                content:
+                  type: string
+                  example: lorem ipsum dolor sit amet
+              required:
+              - title
+              - content
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Draft updated
+                required:
+                - code
+                - message
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/draft/remove/{id}':
+    delete:
+      tags:
+      - Draft
+      summary: Delete by id draft
+      description: Delete draft by id
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Draft deleted
+                required:
+                - code
+                - message
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  ## Follower ##
+
+  '/followers':
+    get:
+      tags:
+      - Follower
+      summary: Get all followers
+      description: Get all followers
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Followers found
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 61d3d0d2a7d7d7d7d7d7d7d7
+                        name:
+                          type: string
+                          example: zobaidulkazi
+                        email:
+                          type: string
+                          format: email
+                          example: zobaidulkazi@me.com
+                        createdAt:
+                          type: string
+                          example: 2022-01-01T00:00:00.000Z
+                        updatedAt:
+                          type: string
+                          example: 2022-01-01T00:00:00.000Z
+                required:
+                - code
+                - message
+                - data
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  '/follower/create':
+    post:
+      tags:
+      - Follower
+      summary: Create follower
+      description: Create follower
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: 61d3d0d2a7d7d7d7d7d7d7d7
+                name:
+                  type: string
+                  example: zobaidulkazi
+                email:
+                  type: string
+                  format: email
+                  example: zobaidulkazi@me.com
+              required:
+              - name
+              - email
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Follower created
+                required:
+                - code
+                - message
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  '/follower/update/{id}':
+    put:
+      tags:
+      - Follower
+      summary: Update follower
+      description: Update follower
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: zobaidulkazi
+                email:
+                  type: string
+                  format: email
+                  example: zobaidulkazi@me.com
+              required:
+              - name
+              - email
+              - id
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Follower updated
+                required:
+                - code
+                - message
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  '/follower/delete/{id}':
+    delete:
+      tags:
+      - Follower
+      summary: Delete follower
+      description: Delete follower
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Follower deleted
+                required:
+                - code
+                - message
+                - data
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
 
 components:
   securitySchemes:
