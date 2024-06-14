@@ -105,11 +105,504 @@ paths:
                       token:
                         type: string
                         example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjU5NzUyNzIsImV4cCI6MTY2NjU5NzU3Mn0.0J4jy9ZMmKq4XQq8Zt0F1pUgZa8fjK9j0m6ZgkFq0s
-
         '400':
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
+
+  '/auth/login':
+    post:
+      tags:
+      - Auth
+      summary: Login
+      description: Login
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: zobaidulkazi@me.com
+                password:
+                  type: string
+                  example: zobaidulkazi
+
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Login successful
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjU5NzUyNzIsImV4cCI6MTY2NjU5NzU3Mn0.0J4jy9ZMmKq4XQq8Zt0F1pUgZa8fjK9j0m6ZgkFq0s
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+
+  'user/{id}':
+    get:
+      tags:
+      - User
+      summary: Get user
+      description: Get user
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: User found
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 61d3d0d2a7d7d7d7d7d7d7d7
+                      name:
+                        type: string
+                        example: zobaidulkazi
+                      email:
+                        type: string
+                        format: email
+                        example: zobaidulkazi@me.com
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: 2022-01-01T00:00:00.000Z
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: 2022-01-01T00:00:00.000Z
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  '/create':
+    post:
+      tags:
+      - Blog
+      summary: Create new blog
+      description: Create new blog
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                authorId:
+                  type: string
+                  ref: 'User'
+                  example: 61d3d0d2a7d7d7d7d7d7d7d7
+                  minLength: 2
+                  maxLength: 30
+                  unique: true
+                  index: true
+                title:
+                  type: string
+                  example: Node js is awesome for beginners to developers
+                  minLength: 2
+                  maxLength: 60
+                  unique: true
+                  trim: true
+                metaTitle:
+                  type: string
+                  example: Nodejs is awesome JavaScript framework
+                  minLength: 2
+                  maxLength: 60
+                  unique: true
+                  trim: true
+                slug:
+                  type: string
+                  example: node-js-is-awesome-for-beginners-to-developers
+                  minLength: 2
+                  maxLength: 60
+                  unique: true
+                  trim: true
+                description:
+                  type: string
+                  example: lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  minLength: 2
+                  maxLength: 2000
+                  unique: true
+                  trim: true
+                image:
+                  type: string
+                  example: https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg
+                  minLength: 2
+                  maxLength: 100
+                  unique: true
+                  trim: true
+                author:
+                  type: string
+                  ref: 'User'
+                  example: zobaidulkazi
+                  minLength: 2
+                  maxLength: 100
+                  unique: true
+                  index: true
+                views:
+                  type: number
+                  default: 0
+                  example: 09
+                  unique: true
+                  index: true
+                date:
+                  type: Date
+                  example: 2022-01-01T00:00:00.000Z
+                  unique: true
+                  index: true
+                createdAt:
+                  type: Date
+                  example: 2022-01-01T00:00:00.000Z
+                  unique: true
+                  index: true
+                updatedAt:
+                  type: Date
+                  example: 2022-01-01T00:00:00.000Z
+                  unique: true
+                  index: true
+              required:
+              - authorId
+              - title
+              - metaTitle
+              - slug
+              - description
+              - image
+              - author
+              - views
+              - date
+              - createdAt
+              - updatedAt
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 201
+                  message:
+                    type: string
+                    example: Blog created successfully
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 61d3d0d2a7d7d7d7d7d7d7d7
+                      authorId:
+                        type: string
+                        example: 61d3d0d2a7d7d7d7d7d7d7d7
+                      title:
+                        type: string
+                        example: Node js is awesome for beginners to developers
+                      metaTitle:
+                        type: string
+                        example: Nodejs is awesome JavaScript framework
+                      slug:
+                        type: string
+                        example: node-js-is-awesome-for-beginners-to-developers
+                      description:
+                        type: string
+                        example: lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua adipiscing elit
+                      image:
+                        type: string
+                        example: https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg
+                      author:
+                        type: string
+                        example: zobaidulkazi
+                      views:
+                        type: number
+                        example: 09
+                      date:
+                        type: Date
+                        example: 2022-01-01T00:00:00.000Z
+                      createdAt:
+                        type: Date
+                        example: 2022-01-01T00:00:00.000Z
+                      updatedAt:
+                        type: Date
+                        example: 2022-01-01T00:00:00.000Z
+                required:
+                - id
+                - authorId
+                - title
+                - metaTitle
+                - slug
+                - description
+                - image
+                - author
+                - views
+                - date
+                - createdAt
+                - updatedAt
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  '/blogs':
+    get:
+      tags:
+      - Blog
+      summary: Get all blogs
+      description: Get all blogs
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Blogs found
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 61d3d0d2a7d7d7d7d7d7d7d7
+                        authorId:
+                          type: string
+                          example: 61d3d0d2a7d7d7d7d7d7d7d7
+                        title:
+                          type: string
+                          example: Node js is awesome for beginners to developers
+                        metaTitle:
+                          type: string
+                          example: Nodejs is awesome JavaScript framework
+                        slug:
+                          type: string
+                          example: node-js-is-awesome-for-beginners-to-developers
+                        description:
+                          type: string
+                          example: lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua adipiscing elit
+                        image:
+                          type: string
+                          example: https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg
+                        author:
+                          type: string
+                          example: zobaidulkazi
+                        views:
+                          type: number
+                          example: 09
+                        date:
+                          type: Date
+                          example: 2022-01-01T00:00:00.000Z
+                        createdAt:
+                          type: Date
+                          example: 2022-01-01T00:00:00.000Z
+                        updatedAt:
+                          type: Date
+                          example: 2022-01-01T00:00:00.000Z
+                required:
+                - id
+                - authorId
+                - title
+                - metaTitle
+                - slug
+                - description
+                - image
+                - author
+                - views
+                - date
+                - createdAt
+                - updatedAt
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  '/update-blog/{id}':
+    put:
+      tags:
+      - Blog
+      summary: Update blog
+      description: Update blog
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Node js is awesome for beginners to developers
+                metaTitle:
+                  type: string
+                  example: Nodejs is awesome JavaScript framework
+                slug:
+                  type: string
+                  example: node-js-is-awesome-for-beginners-to-developers
+                description:
+                  type: string
+                  example: lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua adipiscing elit
+                image:
+                  type: string
+                  example: https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg
+              required:
+              - title
+              - metaTitle
+              - slug
+              - description
+              - image
+              - author
+              - views
+              - date
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Blog updated
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 61d3d0d2a7d7d7d7d7d7d7d7
+                      authorId:
+                        type: string
+                        example: 61d3d0d2a7d7d7d7d7d7d7d7
+                      title:
+                        type: string
+                        example: Node js is awesome for beginners to developers
+                      metaTitle:
+                        type: string
+                        example: Nodejs is awesome JavaScript framework
+                      slug:
+                        type: string
+                        example: node-js-is-awesome-for-beginners-to-developers
+                      description:
+                        type: string
+                        example: lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua adipiscing elit
+                      image:
+                        type: string
+                        example: https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg
+                      author:
+                        type: string
+                        example: zobaidulkazi
+                      views:
+                        type: number
+                        example: 09
+                      date:
+                        type: Date
+                        example: 2022-01-01T00:00:00.000Z
+                      createdAt:
+                        type: Date
+                        example: 2022-01-01T00:00:00.000Z
+                      updatedAt:
+                        type: Date
+                        example: 2022-01-01T00:00:00.000Z
+                required:
+                - id
+                - authorId
+                - title
+                - metaTitle
+                - slug
+                - description
+                - image
+                - author
+                - views
+                - date
+        400:
+          $ref: '#/components/responses/400'
+        500:
+          $ref: '#/components/responses/500'
+
+  '/delete-blog/{id}':
+    delete:
+      tags:
+      - Blog
+      summary: Delete blog
+      description: Delete blog
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  message:
+                    type: string
+                    example: Blog deleted
+                required:
+                - code
+                - message
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+
 
 
 components:
