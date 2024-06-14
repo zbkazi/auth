@@ -1,8 +1,0 @@
-schema:
-  openapi: 3.0.0
-  info:
-    title: API documentation
-    version: 1.0.0
-  paths:
-    /:
-      get:

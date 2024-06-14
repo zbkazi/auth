@@ -1,0 +1,201 @@
+openapi: 3.0.0
+info:
+  title: Blog API Documentation
+  version: 1.0.0
+  description: A blog API, for Kazi Byte
+  termsOfService: https://kazibyte.github.io/t&s/
+  contact:
+    name: kazibyte API Team
+    url: https://kazibyte.github.io
+    email: kazibyte
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+security:
+- bearerAuth: []
+servers:
+- url: https://auth-nhju.onrender.com
+  description: Development server
+- url: http://localhost:4000
+  description: A local server*
+
+tags:
+- name: Auth
+  description: Auth API
+- name: User
+  description: User API
+- name: Blog
+  description: Blog API
+- name: Comment
+  description: Comments API
+- name: Tag
+  description: Tags API
+- name: Category
+  description: Category API
+- name: Draft
+  description: Draft API
+- name: Follower
+  description: Follower API
+- name: Like
+  description: Like API
+- name: Setting
+  description: Setting API
+- name: Report
+  description: Report API
+- name: Notification
+  description: Notifications API
+- name: Search
+  description: Search API
+- name: Profile
+  description: Profile API
+
+
+
+paths:
+  '/auth/signup':
+    post:
+      tags:
+      - Auth
+      summary: Create new user
+      description: Create new user
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: zobaidulkazi
+                email:
+                  type: string
+                  format: email
+                  example: zobaidulkazi@me.com
+                password:
+                  type: string
+                  example: zobaidulkazi
+                confirmPassword:
+                  type: string
+                  example: zobaidulkazi
+              required:
+              - name
+              - email
+              - password
+              - confirmPassword
+
+      responses:
+        '201':
+          description: Created
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 201
+                  message:
+                    type: string
+                    example: User created
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjU5NzUyNzIsImV4cCI6MTY2NjU5NzU3Mn0.0J4jy9ZMmKq4XQq8Zt0F1pUgZa8fjK9j0m6ZgkFq0s
+
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    '500':
+      description: 'Internal Server Error'
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                example: 500
+              error:
+                type: string
+                example: Internal Server Error
+              message:
+                type: string
+                example: We are sorry for the inconvenience. Please try again later
+    '400':
+      description: 'Bad Request'
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                example: 400
+              error:
+                type: string
+                example: Bad Request
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      example: email
+                    message:
+                      type: string
+                      example: Invalid email
+                    in:
+                      type: string
+                      enum: [query, body]
+                      example: body
+    '401':
+      description: Unauthorized
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                example: 401
+              error:
+                type: string
+                example: Unauthorized
+              message:
+                type: string
+                example: You don't have the right permissions
+    '404':
+      description: Resource Not Found
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                example: 404
+              error:
+                type: string
+                example: Not Found
+              message:
+                type: string
+                example: Requested resource not found
