@@ -1,10 +1,12 @@
 const express = require('express');
 const blogs = express.Router();
 
- const { create, getBlogs } = require('../controllers/blog');
+const { create, getBlogs, getBlogByParams } = require('../controllers/blog');
+const { blogLimiter, validateQuery} = require('../middleware')
 
+blogs.post('/create', create, blogLimiter);
 
-blogs.post('/create', create);
-blogs.get('/blogs', getBlogs);
+blogs.get('/blogs/:id', getBlogByParams, validateQuery, blogLimiter);
+blogs.get('/blogs', getBlogs, blogLimiter);
 
 module.exports = blogs;

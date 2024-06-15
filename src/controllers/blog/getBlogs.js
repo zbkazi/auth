@@ -1,4 +1,7 @@
 const Blog = require('../../models/blog/Blog'); // Assuming you have a Blog model
+const logger = require('../../utils/logger');
+
+
 
 // Controller for getting blogs with pagination links
 const getBlog = async (req, res) => {
@@ -13,7 +16,7 @@ const getBlog = async (req, res) => {
     const totalPages = Math.ceil(totalBlogs / limit);
 
     // Base URL for constructing pagination links
-    const baseUrl = `${req.protocol}://${req.get('host')}${req.originalUrl.split('?').shift()}`;
+     const baseUrl = `${req.protocol}://${req.get('host')}${req.originalUrl.split('?').shift()}`;
 
     // Helper function to build query string for pagination links
     const buildLink = (page, limit) => `${baseUrl}?page=${page}&limit=${limit}`;
@@ -33,6 +36,7 @@ const getBlog = async (req, res) => {
 
     res.status(200).json({ pagination,blogs });
   } catch (err) {
+    logger.error('Error occurred while fetching blogs', { error: err.message });
     res.status(500).json({ error: err.message });
   }
 };

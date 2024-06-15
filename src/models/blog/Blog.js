@@ -1,17 +1,7 @@
 const {Schema, model} = require('mongoose')
 
 const blogSchema = new Schema(
-    {
-      authorId: {
-        type: String,
-        ref: "User",
-        required: true,
-        index: true,
-        trim: true,
-        unique: true,
-        min: 2,
-        max: 30,
-      },
+  {
       title: {
         type: String,
         required: true,
@@ -49,13 +39,6 @@ const blogSchema = new Schema(
         max: Infinity,
       },
       image: {
-        type: String,
-        required: true,
-        trim: true,
-        min: 2,
-        max: 100,
-      },
-      author: {
         type: String,
         required: true,
         trim: true,

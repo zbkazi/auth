@@ -3,12 +3,18 @@ const dotenv = require("dotenv");
 require("./config/db");
 const router = require("./routes");
 const swaggerMiddleware = require("./middleware/swaggerMiddleware");
+const { requestLogger, errorLogger } = require('./middleware/loggerMiddleware');
+
+
+
 
 dotenv.config();
 
 
 
 app.use("/api", router)
+app.use(requestLogger);
+app.use(errorLogger);
 
 
 swaggerMiddleware(app)
