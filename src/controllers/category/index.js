@@ -1,8 +1,13 @@
-const createCategory = require("./create");
-
+const create = require("./create");
+const getAll = require("./getAll");
+const update = require("./update");
+const remove = require("./remove");
 
 module.exports = {
-    createCategory
+    create,
+    getAll,
+    update,
+    remove
 }
 
 

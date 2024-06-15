@@ -1,7 +1,7 @@
 const Category = require('../../models/category/Category');
 const { categorySchema } = require('../../schemas/category/CategorySchema');
 
-const createCategory = async (req, res, next) => {
+const create = async (req, res, next) => {
     try {
         // Validate request body
         const parsedBody = categorySchema.safeParse(req.body);
@@ -38,4 +38,4 @@ const createCategory = async (req, res, next) => {
     }
 };
 
-module.exports = createCategory;
+module.exports = create;

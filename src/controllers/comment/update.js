@@ -1,11 +1,22 @@
+const logger = require("../../utils/logger");
 const Comment = require("../../models/comment/Comment");
+const { commentSchema } = require("../../schemas/comment/CommentSchema");
 
 const update = async (req, res, next) => {
-  try {
-    const { id } = req.params; // Extract comment ID from request parameters
-    const { comment: updatedComment } = req.body; // Extract updated comment from request body
+  const { id } = req.params;
 
-    // Check if the comment exists
+  try {
+    // Validate request body
+    const parsedBody = commentSchema.safeParse(req.body);
+    if (!parsedBody.success) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid request body",
+        errors: parsedBody.error.errors,
+      });
+    }
+
+    // Check if comment exists
     const comment = await Comment.findById(id);
     if (!comment) {
       return res.status(404).json({
@@ -14,16 +25,29 @@ const update = async (req, res, next) => {
       });
     }
 
-    // Update the comment
-    comment.comment = updatedComment;
+    // Update comment
+    comment.comment = parsedBody.data.comment; // Update any other fields as needed
     await comment.save();
 
-    res.status(200).json({
+    // Log successful update
+    logger.info(`Comment updated successfully: ${id}`);
+
+    // Return success response
+    return res.status(200).json({
       success: true,
-      data: comment,
       message: "Comment updated successfully",
+      data: comment,
     });
   } catch (error) {
+    // Log the error
+    logger.error(`Failed to update comment ${id}`, { error: error.message });
+
+    // Handle errors
+    res.status(500).json({
+      success: false,
+      message: "Failed to update comment",
+      errors: error.message,
+    });
     next(error);
   }
 };
